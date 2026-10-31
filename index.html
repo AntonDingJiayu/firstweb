@@ -6,9 +6,9 @@
     <title>丁嘉宇 Anton - 个人主页</title>
     <style>
         :root {
-            --primary-color: #0078d4; /* 微软蓝风格 */
+            --primary-color: #0078d4; /* 微软蓝 */
             --text-color: #333;
-            --bg-color: #f3f4f6;
+            --bg-color: #f8f9fa;
             --card-bg: #ffffff;
         }
 
@@ -25,221 +25,160 @@
         nav {
             background: var(--card-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 1rem 0;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        nav .logo { font-weight: bold; font-size: 1.2rem; color: var(--primary-color); }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary-color); }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--primary-color); }
-
-        /* 头部区域 */
+        /* 头部 Hero 区域 */
         header {
             text-align: center;
-            padding: 80px 20px;
-            background: var(--card-bg);
-            margin-bottom: 20px;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
         }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #e5e7eb;
-            margin: 0 auto 20px;
-            /* 这里可以换成你的真实头像链接 */
-            background-image: url('https://ui-avatars.com/api/?name=Anton+Ding&background=0078d4&color=fff&size=128');
-            background-size: cover;
-            background-position: center;
-        }
-
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-
-        header .tagline {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-
-        header .badges {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* 内容区块 */
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            border-bottom: 3px solid var(--primary-color);
-            display: inline-block;
-            margin-bottom: 25px;
-            padding-bottom: 5px;
-            font-size: 1.8rem;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid transparent;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            border-top-color: var(--primary-color);
-        }
-
-        .card h3 { margin-bottom: 10px; font-size: 1.3rem; }
-        .card p { color: #555; font-size: 0.95rem; }
-
-        /* 按钮样式 */
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; color: #222; }
+        header p { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
+        
         .btn {
             display: inline-block;
             background: var(--primary-color);
             color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 30px;
+            border-radius: 25px;
             text-decoration: none;
-            margin-top: 15px;
-            font-weight: 500;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,120,212,0.3); }
+
+        /* 通用容器 */
+        section { padding: 60px 20px; max-width: 900px; margin: 0 auto; }
+        h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; position: relative; }
+        h2::after {
+            content: ''; display: block; width: 50px; height: 3px; 
+            background: var(--primary-color); margin: 10px auto 0;
         }
 
-        .btn:hover { opacity: 0.9; }
+        /* 荣誉展示区 (重点修改) */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-        /* 页脚 */
-        footer {
+        .award-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             text-align: center;
-            padding: 40px 0;
-            color: #888;
-            font-size: 0.9rem;
-            margin-top: 40px;
-            border-top: 1px solid #e5e7eb;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-color);
         }
 
+        .award-card:hover { transform: translateY(-5px); }
+
+        /* Logo 样式控制 */
+        .award-logo {
+            width: 120px; /* 控制 Logo 大小 */
+            height: auto;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .award-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+        .award-desc { color: #666; font-size: 0.95rem; }
+
+        /* 联系方式 */
+        .contact-box {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        footer { text-align: center; padding: 20px; color: #999; font-size: 0.9rem; margin-top: 50px; }
+
+        /* 手机端适配 */
         @media (max-width: 600px) {
             header h1 { font-size: 2rem; }
-            .container { flex-direction: column; gap: 10px; }
-            .nav-links a { margin: 0 10px; }
+            nav ul { gap: 10px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
     <nav>
-        <div class="container">
-            <a href="#" class="logo">Anton.Ding</a>
-            <div class="nav-links">
-                <a href="#about">关于我</a>
-                <a href="#achievements">荣誉奖项</a>
-                <a href="#contact">联系我</a>
-            </div>
-        </div>
+        <div class="logo">Anton.Ding</div>
+        <ul>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#awards">荣誉奖项</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
     </nav>
 
-    <!-- 头部简介 -->
     <header>
-        <div class="avatar"></div>
-        <h1>你好，我是丁嘉宇 Anton</h1>
-        <p class="tagline">一名热爱技术的中学生，WRC 世界机器人大赛一等奖得主。</p>
-        <div class="badges">
-            <span class="badge"> WRC 一等奖</span>
-            <span class="badge"> 微软认证</span>
-            <span class="badge"> 准留学生</span>
-        </div>
+        <h1>你好，我是丁嘉宇 (Anton)</h1>
+        <p>一名热衷于技术与创新的中学生 | 微软认证持有者</p>
+        <a href="#contact" class="btn">联系我</a>
     </header>
 
-    <!-- 关于我 -->
     <section id="about">
         <h2>关于我</h2>
-        <p>我是一名对计算机和机器人技术充满热情的中学生。除了日常学业，我热衷于利用 AI 工具进行游戏开发和创意内容制作，探索人机协作的无限可能。 目前，我正在积极准备前往美国留学，期待在更广阔的舞台上迎接挑战。</p>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #555;">
+            我是一名充满好奇心的中学生，致力于探索计算机科学与机器人技术的无限可能。
+            我相信技术可以改变世界，并为此不断努力提升自己的编程与工程能力。
+        </p>
     </section>
 
-    <!-- 荣誉奖项 -->
-    <section id="achievements">
-        <h2>荣誉与证书</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3> WRC 世界机器人大赛一等奖</h3>
-                <p>在被誉为机器人界“奥林匹克”的 WRC 世界机器人大赛中，凭借出色的编程与团队协作能力，荣获一等奖。</p>
+    <!-- 重点修改的荣誉部分 -->
+    <section id="awards">
+        <h2>核心荣誉</h2>
+        <div class="awards-grid">
+            
+            <!-- 微软证书卡片 -->
+            <div class="award-card">
+                <!-- 这里的 src 必须和你上传的文件名一致 -->
+                <img src="microsoft.png" alt="Microsoft Logo" class="award-logo">
+                <div class="award-title">Microsoft Certified</div>
+                <div class="award-desc">获得微软官方技术认证，证明了在相关技术领域的专业能力与知识储备。</div>
             </div>
-            <div class="card">
-                <h3> 微软技术认证</h3>
-                <p>获得微软官方技术认证，证明了在相关计算机技术领域的专业能力与扎实基础。</p>
+
+            <!-- WRC 大赛卡片 -->
+            <div class="award-card">
+                <!-- 这里的 src 必须和你上传的文件名一致 -->
+                <img src="wrc.png" alt="WRC Logo" class="award-logo">
+                <div class="award-title">WRC 世界机器人大赛一等奖</div>
+                <div class="award-desc">在被誉为机器人界“奥林匹克”的世界机器人大赛中脱颖而出，荣获一等奖。</div>
             </div>
-            <div class="card">
-                <h3> AIGC 创意实践</h3>
-                <p>善于利用 AI 工具辅助游戏设计与内容创作，将前沿技术转化为实际的创意作品。</p>
-            </div>
+
         </div>
     </section>
 
-    <!-- 联系方式 -->
     <section id="contact">
         <h2>联系我</h2>
-        <p>如果你对我的项目感兴趣，或者想交流机器人与编程技术，欢迎通过以下方式联系我：</p>
-        <ul style="margin-top: 15px; list-style: none;">
-            <li style="margin-bottom: 10px;">
-                 邮箱: <a href="mailto:Jiayu.Ding402974-biph@basischina.com" style="color: var(--primary-color);">Jiayu.Ding402974-biph@basischina.com</a>
-            </li>
-            <li>
-                 GitHub: <a href="https://github.com/yourusername" target="_blank" style="color: var(--primary-color);">github.com/yourusername</a>
-            </li>
-        </ul>
+        <div class="contact-box">
+            <p>如果你对我的项目感兴趣，或者想交流技术，欢迎发邮件给我：</p>
+            <br>
+            <a href="mailto:Jiayu.Ding402974-biph@basischina.com" style="font-size: 1.1rem; color: var(--primary-color); word-break: break-all;">
+                Jiayu.Ding402974-biph@basischina.com
+            </a>
+        </div>
     </section>
 
-    <!-- 页脚 -->
     <footer>
-        <p>&copy; 2026 丁嘉宇 Anton. All Rights Reserved.</p>
+        &copy; 2024 丁嘉宇 Anton. All Rights Reserved.
     </footer>
 
 </body>
